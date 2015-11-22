@@ -25,7 +25,7 @@ Para la puesta en marcha de **FStudio** hay que seguir los siguientes pasos:
   3. Cambiar el nombre a la carpeta descomprimida por el nombre de su proyecto.
   4. Mover la carpeta a la carpeta raíz del servidor Web.
   5. Editar el archivo ***config.php*** ubicado en la carpeta ***config***.
-  6. [paso opcional] Configurar un host virtual para el proyecto.
+  6. **[paso opcional]** Configurar un host virtual para el proyecto.
   7. Ejecutar el proyecto.
 
 > Recuerde que la única puerta de entrada al proyecto es por el archivo ***index.php*** ubicado en la carpeta ***web***.
