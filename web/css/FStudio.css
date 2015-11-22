@@ -1,0 +1,90 @@
+@font-face {
+	font-family: 'FStudio';
+	src:url('../fonts/FStudio.eot?qox6b0');
+	src:url('../fonts/FStudio.eot?qox6b0#iefix') format('embedded-opentype'),
+		url('../fonts/FStudio.ttf?qox6b0') format('truetype'),
+		url('../fonts/FStudio.woff?qox6b0') format('woff'),
+		url('../fonts/FStudio.svg?qox6b0#FStudio') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="fs-icon-"], [class*=" fs-icon-"] {
+	font-family: 'FStudio';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.fs-icon-warning:before {
+	content: "\e900";
+}
+.fs-icon-bug:before {
+	content: "\e901";
+}
+
+body {
+  font-family: verdana;
+}
+
+/*@media screen and (min-width: 1200px) {*/
+body {
+  padding: 20px;
+}
+
+.error {
+  border: #ebccd1 solid 1px;
+  border-radius: 4px;
+  padding: 20px;
+  background-color: #f2dede;
+  color: #a94442;
+}
+
+.warning {
+  border: #faebcc solid 1px;
+  border-radius: 4px;
+  padding: 20px;
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+}
+
+.warning > div, .error > div {
+  color: #333;
+  border-radius: 4px;
+  background-color: #f7f7f9;
+  padding: 9px 14px;
+  border: #e1e1e8 solid 1px;
+  overflow: auto;
+}
+
+h1 {
+  margin-top: 0px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+.warning > div > div > p, .error > div > div > p {
+  margin-top: 0px;
+}
+
+.warning > div > div > p:last-child, .error > div > div > p:last-child {
+  margin-bottom: 0px;
+}
+
+pre {
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: #e1e1e8 solid 1px;
+  overflow: auto;
+  padding: 15px;
+}
+/*}*/

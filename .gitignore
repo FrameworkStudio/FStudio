@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+/nbproject/private/
+/nbproject/*
+/web/upload/*
+/web/download/*

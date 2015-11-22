@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?><Db flnm="fstudio" nm="fstudio" ver="1.3.4">
+  <VerLbl/>
+  <VerNotes/>
+  <DefTblOpts/>
+  <DocFolder>/Users/julianlasso/Documents</DocFolder>
+  <Sch Cm="" nm="public">
+    <Tbl UsSo="1" nm="bitacora">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id" nm="pkbitacora"/>
+      <Cl au="1" df="nextval('bitacora_id_seq'::regclass)" nm="id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuario_id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="accion" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="80" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tabla" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="80" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="registro" nu="1">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="observacion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="1024" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="fecha" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="fk_bitacora_usuario" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="usuario" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="bitacora" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="usuario_id" prCl="id"/>
+      </Fk>
+      <Idx clu="0" ftx="0" nm="bitacora_fecha_Idx" spa="0" unq="0">
+        <ClNs>fecha</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="bitacora_usuario_id_Idx" spa="0" unq="0">
+        <ClNs>usuario_id</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="credencial">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id" nm="pkcredencial"/>
+      <Cl au="1" df="nextval('credencial_id_seq'::regclass)" nm="id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="80" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="deleted_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Idx clu="0" ftx="0" nm="credencial_deleted_at_Idx" spa="0" unq="0">
+        <ClNs>deleted_at</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Trg del="0" eaRow="1" exBe="1" ins="0" nm="actualizar_fecha_credencial" upd="1">
+        <Sql>actualizar_fecha()</Sql>
+      </Trg>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="dato_usuario">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id" nm="pkdato_usuario"/>
+      <Cl au="1" df="nextval('dato_usuario_id_seq'::regclass)" nm="id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuario_id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cedula" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="20" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="80" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="apellidos" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="80" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="movil" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="12" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="correo" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="120" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="imagen" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="36" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sexo" nu="0">
+        <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>t = masculino ; f = femenino</Cm>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="deleted_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="fk_dato_usuario_usuario" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="usuario" oe="1" sch="public" zr="0"/>
+        <CdTb mn="0" nm="dato_usuario" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="usuario_id" prCl="id"/>
+      </Fk>
+      <Idx clu="0" ftx="0" nm="dato_usuario_correo_Idx" spa="0" unq="1">
+        <ClNs>correo</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="dato_usuario_deleted_at_Idx" spa="0" unq="0">
+        <ClNs>deleted_at</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="dato_usuario_usuario_id_Idx" spa="0" unq="1">
+        <ClNs>usuario_id</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Trg del="0" eaRow="1" exBe="1" ins="0" nm="actualizar_fecha_dato_usuario" upd="1">
+        <Sql>actualizar_fecha()</Sql>
+      </Trg>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="password_recovery">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id" nm="pkpassword_recovery"/>
+      <Cl au="1" df="nextval('password_recovery_id_seq'::regclass)" nm="id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuario_id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="hash" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="32" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="fk_password_recovery_usuario" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="usuario" oe="1" sch="public" zr="0"/>
+        <CdTb mn="0" nm="password_recovery" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="usuario_id" prCl="id"/>
+      </Fk>
+      <Idx clu="0" ftx="0" nm="password_recovery_hash_Idx" spa="0" unq="0">
+        <ClNs>hash</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="password_recovery_usuario_id_Idx" spa="0" unq="1">
+        <ClNs>usuario_id</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="recordar_me">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id" nm="pkrecordar_me"/>
+      <Cl au="1" df="nextval('recordar_me_id_seq'::regclass)" nm="id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuario_id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="ip_address" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="hash_cookie" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="32" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="fk_recordar_me_usuario" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="usuario" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="recordar_me" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="usuario_id" prCl="id"/>
+      </Fk>
+      <Idx clu="0" ftx="0" nm="recordar_me_ip_address_hash_cookie_Idx" spa="0" unq="1">
+        <ClNs>ip_address, hash_cookie</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="recordar_me_usuario_id_Idx" spa="0" unq="0">
+        <ClNs>usuario_id</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="usuario">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id" nm="pkusuario"/>
+      <Cl au="1" df="nextval('usuario_id_seq'::regclass)" nm="id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="user_name" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="80" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="password" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="32" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="t" nm="actived" nu="0">
+        <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>TRUE = activado | FALSE = desactivado</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="last_login_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="deleted_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Idx clu="0" ftx="0" nm="usuario_actived_Idx" spa="0" unq="0">
+        <ClNs>actived</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="usuario_deleted_at_Idx" spa="0" unq="0">
+        <ClNs>deleted_at</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="usuario_user_name_Idx" spa="0" unq="1">
+        <ClNs>user_name</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="usuario_user_name_password_Idx" spa="0" unq="0">
+        <ClNs>user_name, password</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Trg del="0" eaRow="1" exBe="1" ins="0" nm="actualizar_fecha_usuario" upd="1">
+        <Sql>actualizar_fecha()</Sql>
+      </Trg>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="usuario_credencial">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id" nm="pkusuario_credencial"/>
+      <Cl au="1" df="nextval('usuario_credencial_id_seq'::regclass)" nm="id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuario_id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="credencial_id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="fk_usuario_credencial_credencial" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="credencial" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="usuario_credencial" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="credencial_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="1" nm="fk_usuario_credencial_usuario" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="usuario" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="usuario_credencial" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="usuario_id" prCl="id"/>
+      </Fk>
+      <Idx clu="0" ftx="0" nm="usuario_credencial_credencial_id_Idx" spa="0" unq="0">
+        <ClNs>credencial_id</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="usuario_credencial_usuario_id_credencial_id_Idx" spa="0" unq="1">
+        <ClNs>usuario_id, credencial_id</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="usuario_credencial_usuario_id_Idx" spa="0" unq="0">
+        <ClNs>usuario_id</ClNs>
+        <OptTx>USING btree</OptTx>
+      </Idx>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Proc nm="actualizar_fecha()">
+      <src>CREATE OR REPLACE FUNCTION actualizar_fecha() 
+  RETURNS trigger AS 
+$$
+    BEGIN
+        IF ( TG_OP = 'UPDATE' ) THEN
+            NEW.updated_at := now();
+            RETURN NEW;
+        END IF;
+    END;
+$$
+  LANGUAGE plpgsql VOLATILE 
+  COST 100;</src>
+    </Proc>
+    <Seq incr="1" nm="bitacora_id_seq">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <Seq incr="1" nm="credencial_id_seq">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <Seq incr="1" nm="dato_usuario_id_seq">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <Seq incr="1" nm="password_recovery_id_seq">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <Seq incr="1" nm="recordar_me_id_seq">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <Seq incr="1" nm="usuario_credencial_id_seq">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <Seq incr="1" nm="usuario_id_seq">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <CustomTypes/>
+  </Sch>
+  <Dgm nm="public">
+    <RnCf ClkAct="false" FtSz="11" lkStgy="OffsetDirect" zm="1.0">
+      <VbCfg>
+        <Fg ky="Auto Number" vl="0"/>
+        <Fg ky="Check" vl="0"/>
+        <Fg ky="Comment" vl="0"/>
+        <Fg ky="Data Type" vl="1"/>
+        <Fg ky="Default" vl="0"/>
+        <Fg ky="ENUM Values" vl="0"/>
+        <Fg ky="Length" vl="1"/>
+        <Fg ky="Name" vl="1"/>
+        <Fg ky="Nullable" vl="0"/>
+        <Fg ky="Schema Name" vl="0"/>
+        <Fg ky="Signed" vl="0"/>
+      </VbCfg>
+    </RnCf>
+    <DiaProps>
+      <Show AllCols="1" FkCols="1" FkNms="0" PkCols="1"/>
+      <ErNotation>DbwErNotation</ErNotation>
+      <DbTableRectangleFill>HeaderFooterFill</DbTableRectangleFill>
+      <svg path=""/>
+    </DiaProps>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="usuario" x="356" y="214"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="bitacora" x="342" y="36"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="credencial" x="653" y="51"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="usuario_credencial" x="652" y="190"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="recordar_me" x="31" y="165"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="dato_usuario" x="40" y="290"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="password_recovery" x="63" y="41"/>
+    <FkGl bkCl="ff000000" childEdge="" nm="public.bitacora.fk_bitacora_usuario" parentEdge="" positioner="">
+      <positionableLines/>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="" nm="public.dato_usuario.fk_dato_usuario_usuario" parentEdge="" positioner="">
+      <positionableLines/>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="" nm="public.password_recovery.fk_password_recovery_usuario" parentEdge="" positioner="">
+      <positionableLines/>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="" nm="public.recordar_me.fk_recordar_me_usuario" parentEdge="" positioner="">
+      <positionableLines/>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="" nm="public.usuario_credencial.fk_usuario_credencial_credencial" parentEdge="" positioner="">
+      <positionableLines/>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="" nm="public.usuario_credencial.fk_usuario_credencial_usuario" parentEdge="" positioner="">
+      <positionableLines/>
+    </FkGl>
+    <Notes/>
+    <Zones/>
+  </Dgm>
+  <RnmMgr NxRnmId="9">
+    <RnmCh ObjCls="Schema" ParCls="Database" ParNme="soho_framework" SupCls="" SupNme="">
+      <Rnm id="1" nNm="public" oNm="schemaA"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="dato_usuario" SupCls="Schema" SupNme="public">
+      <Rnm id="2" nNm="movil" oNm="telefono"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="ficha" SupCls="Schema" SupNme="public">
+      <Rnm id="3" nNm="instructor_id" oNm="usuario_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="4" nNm="ficha_instructor" oNm="ficha_instructores"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="ficha" SupCls="Schema" SupNme="public">
+      <Rnm id="5" nNm="usuario_id_creador" oNm="usuario_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="ficha" SupCls="Schema" SupNme="public">
+      <Rnm id="6" nNm="estado_id_aprendiz" oNm="estado_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="7" nNm="actividad" oNm="actividades"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="password_recovery" SupCls="Schema" SupNme="public">
+      <Rnm id="8" nNm="hash" oNm="key"/>
+    </RnmCh>
+  </RnmMgr>
+  <DbDocOptionMgr>
+    <BasicOptionMgr>
+      <Name>db.doc.option.mgr</Name>
+      <BoolOpt lbl="Diagrams" nm="doc.diagrams" on="1" spl="0"/>
+      <BoolOpt lbl="Foreign Keys" nm="doc.fks" on="1" spl="0"/>
+      <BoolOpt lbl="Indexes" nm="doc.indexes" on="1" spl="0"/>
+      <BoolOpt lbl="Overwrite CSS File" nm="doc.overwrite.css" on="1" spl="0"/>
+      <BoolOpt lbl="Procedures" nm="doc.procs" on="1" spl="0"/>
+      <BoolOpt lbl="Schemas" nm="doc.schemas" on="1" spl="0"/>
+      <BoolOpt lbl="Sequences" nm="doc.sequences" on="1" spl="0"/>
+      <BoolOpt lbl="Tables" nm="doc.tables" on="1" spl="0"/>
+      <BoolOpt lbl="Triggers" nm="doc.triggers" on="1" spl="0"/>
+      <BoolOpt lbl="Views" nm="doc.views" on="1" spl="0"/>
+    </BasicOptionMgr>
+  </DbDocOptionMgr>
+  <OpenEditors>
+    <OpenEditor ClsNm="Diagram" fqn="null.public" selected="1"/>
+  </OpenEditors>
+  <TreePaths>
+    <TreePath/>
+    <TreePath>/Schemas (1)</TreePath>
+    <TreePath>/Schemas (1)/public</TreePath>
+    <TreePath>/Schemas (1)/public/Tables (7)</TreePath>
+    <TreePath>/Schemas (1)/public/Procedures (1)</TreePath>
+    <TreePath>/Schemas (1)/public/Sequences (7)</TreePath>
+    <TreePath>/Diagrams (1)</TreePath>
+    <TreePath>/Diagrams (1)/public</TreePath>
+  </TreePaths>
+</Db>
