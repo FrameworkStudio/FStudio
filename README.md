@@ -31,7 +31,7 @@ Para la puesta en marcha de **FStudio** hay que seguir los siguientes pasos:
 > Recuerde que la única puerta de entrada al proyecto es por el archivo ***index.php*** ubicado en la carpeta ***web***.
 
 ## Documentación oficial
-***FStudio*** está documentado en todos sus aspecto y día a día se irá construyendo más documentación al respecto el cual puedes [ver aquí].
+**FStudio** está documentado en todos sus aspecto y día a día se irá construyendo más documentación al respecto el cual puedes [ver aquí].
 
 ## Historial de cambios - Changelog
 
@@ -44,7 +44,7 @@ Para la puesta en marcha de **FStudio** hay que seguir los siguientes pasos:
   - Implementación del sistema de [plug-ins].
 
 ## Equipo inicial de desarrollo
-El equipo inicial de desarrollo intelectual y material está compuesto por todos los instructores del SENA CDTI regional Valle presentes a finales del 2015.
+El equipo inicial de desarrollo intelectual y material está compuesto por todos los instructores del **SENA CDTI regional Valle** presentes a finales del 2015.
 
   1. Andres Fernando Sanchez
   2. David Barona
