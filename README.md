@@ -1,8 +1,6 @@
 # Framework Studio 1.0.0
-----
 **Framework Studio (FStudio)** es la línea base que se propone para trabajar los proyectos formativos desarrollados en PHP en el SENA (CDTI - Valle) en sus programas ADSI, TADSI y TPS.
 ## Características
-----
 Cuando se decidió crear FStudio, pensamos en:
   - Código fácil de comprender y por ende una curva de aprendizaje bastante rápida.
   - Estandarización de la enseñanza y código PHP.
@@ -11,7 +9,6 @@ Cuando se decidió crear FStudio, pensamos en:
   - Flexibilidad del framework por medio de [plug-ins](https://es.wikipedia.org/wiki/Complemento_%28inform%C3%A1tica%29)
 > *Los **plug-ins** son una herramienta sumamente poderosa, la cual le permitirá a los aprendices e instructores implementar comportamientos no concebidos inicialmente en FStudio como por ejemplo implementar el componente DAO para el manejo del acceso a los datos.*
 ## Requerimientos
-----
   - [Apache 2](https://httpd.apache.org/)
   - [PHP 5.5](http://php.net/) o superior
   - [MySQL 5](https://www.mysql.com/), [PostgreSQL 9](http://www.postgresql.org/) o cualquier base de datos soportada por la [librería PDO](http://php.net/manual/es/book.pdo.php)
