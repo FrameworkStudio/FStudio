@@ -13,7 +13,12 @@ $config->setPort(5432);
 $config->setDbName('fstudio');
 $config->setUser('postgres');
 $config->setPassword('sqlx32');
-$config->setDsn($config->getDriver() . ':host=' . $config->getHost() . ';port=' . $config->getPort() . ';dbname=' . $config->getDbName());
+$config->setDsn(
+        $config->getDriver()
+        . ':host=' . $config->getHost()
+        . ';port=' . $config->getPort()
+        . ';dbname=' . $config->getDbName()
+);
 
 $config->setSessionName('FStudio');
 
