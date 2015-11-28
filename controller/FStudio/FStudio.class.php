@@ -22,4 +22,13 @@ class FStudio extends controller {
     $this->defineView('FStudio', 'exception', 'html');
   }
 
+  /**
+   * Método principal para la primera ejecución despues de instalar
+   * @version 1.0.0
+   */
+  public function wellcome() {
+    $this->mensaje = "Wellcome to FrameWork Studio";
+    $this->defineView('FStudio', 'wellcome', 'html');
+  }
+  
 }
