@@ -2,6 +2,8 @@
 
 namespace FStudio;
 
+use PDOException;
+
 /**
  * Clase para manejar las vistas del sistema
  * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
@@ -16,7 +18,7 @@ class fsView {
    * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
    * @var myConfig
    */
-  protected $config;
+  private $config;
 
   /**
    * Variables que pasarán a la vista
@@ -28,7 +30,7 @@ class fsView {
   /**
    * Módulo de la vista
    * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
-   * @var strign
+   * @var string
    */
   private $module;
 
@@ -55,7 +57,7 @@ class fsView {
    * @param string $view
    * @param string $format
    */
-  public function __construct(myConfig $config, $module, $view, $format) {
+  public function __construct(myConfig $config = null, $module = null, $view = null, $format = null) {
     $this->config = $config;
     $this->module = $module;
     $this->view = $view;
@@ -82,7 +84,7 @@ class fsView {
       extract($this->variables);
     }
     if (file_exists($this->getFileView()) === false) {
-      throw new \PDOException('La vista solicitada no existe');
+      throw new PDOException('La vista solicitada no existe');
     }
     require_once $this->getFileView();
   }
@@ -95,6 +97,22 @@ class fsView {
    */
   private function getFileView() {
     return $this->config->getPath() . 'view/' . $this->module . '/' . $this->view . '.' . $this->format . '.php';
+  }
+  
+  public function setConfig(myConfig $config) {
+    $this->config = $config;
+  }
+  
+  public function setModule($module) {
+    $this->module = $module;
+  }
+
+  public function setView($view) {
+    $this->view = $view;
+  }
+
+  public function setFormat($format) {
+    $this->format = $format;
   }
 
 }

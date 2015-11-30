@@ -3,16 +3,15 @@
 use FStudio\myConfig as config;
 
 $config = new config();
+$config->setPath($_SERVER['DOCUMENT_ROOT'].'/fstudio/');
+$config->setUrl('http://localhost/fstudio/web/');
 
-$config->setPath('/Applications/MAMP/htdocs/FStudio/');
-$config->setUrl('http://localhost/FStudio/web/');
-
-$config->setDriver('pgsql');
+$config->setDriver('mysql'); // mysql, pgsql
 $config->setHost('localhost');
-$config->setPort(5432);
+$config->setPort(false); // 3306, 5432
 $config->setDbName('fstudio');
-$config->setUser('postgres');
-$config->setPassword('sqlx32');
+$config->setUser('root');
+$config->setPassword('root');
 $config->setDsn(
         $config->getDriver()
         . ':host=' . $config->getHost()
@@ -22,10 +21,9 @@ $config->setDsn(
 
 $config->setSessionName('FStudio');
 
-$config->setDefaultModule('ejemplo');
-$config->setDefaultAction('index');
+$config->setDefaultModule('FStudio');
+$config->setDefaultAction('wellcome');
 
 $config->setPlugins(array(
-    'fsEjemplo1Plugin',
-    'fsEjemplo2Plugin',
+    'fsEjemplo1Plugin'
 ));

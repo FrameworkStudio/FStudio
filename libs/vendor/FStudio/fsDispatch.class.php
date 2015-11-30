@@ -2,6 +2,8 @@
 
 namespace FStudio;
 
+use PDOException;
+
 /**
  * Versión actual de la línea base (Framework Studio)
  */
@@ -21,21 +23,21 @@ class fsDispatch {
    * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
    * @var myConfig
    */
-  private $config;
+  protected $config;
 
   /**
    * Módulo a ejecutar
    * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
    * @var string
    */
-  private $module;
+  protected $module;
 
   /**
    * Acción a ejecutar
    * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
    * @var string
    */
-  private $action;
+  protected $action;
 
   /**
    * Identifica (true) si ejecuta un controlador para una acción<br>
@@ -43,14 +45,21 @@ class fsDispatch {
    * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
    * @var string
    */
-  private $actionOractions;
+  protected $actionOractions;
 
   /**
    * Instancia del controlador a ejecutar
    * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
    * @var fsController
    */
-  private $controller;
+  protected $controller;
+  
+  /**
+   * Instancia de la clase de la vista
+   * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
+   * @var fsView
+   */
+  protected $view;
 
   /**
    * Plantilla para cargar un controlador con muchas acciones
@@ -70,8 +79,9 @@ class fsDispatch {
    * @version 1.0.0
    * @param \FStudio\myConfig $config Configuración del sistema
    */
-  public function __construct(myConfig $config) {
+  public function __construct(myConfig $config, fsView $view) {
     $this->config = $config;
+    $this->view = $view;
   }
 
   /**
@@ -87,7 +97,7 @@ class fsDispatch {
       $this->loadModuleAndAction();
       $this->executeController();
       $this->renderView();
-    } catch (\PDOException $exc) {
+    } catch (PDOException $exc) {
       require_once $this->config->getPath() . 'controller/FStudio/FStudio.class.php';
       $this->controller = new \FStudio($this->config);
       $this->controller->exception($exc);
@@ -98,10 +108,10 @@ class fsDispatch {
   /**
    * Carga los archivos base para la ejecución del sistema
    */
-  private function loadBasicFiles() {
+  protected function loadBasicFiles() {
     $files = array(
         'libs/vendor/FStudio/fsModel.class.php',
-        'libs/vendor/FStudio/fsView.class.php',
+        'libs/vendor/FStudio/fsPlugin.class.php',
         'libs/vendor/FStudio/fsController.class.php',
         'libs/vendor/FStudio/interfaces/fsAction.interface.php'
     );
@@ -115,16 +125,16 @@ class fsDispatch {
    * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
    * @version 1.0.0
    */
-  private function setRouting() {
+  protected function setRouting() {
     if (isset($_SERVER['PATH_INFO']) === true) {
       $data = explode('/', $_SERVER['PATH_INFO']);
       $this->module = isset($data[1]) === true ? $data[1] : null;
       $this->action = isset($data[2]) === true ? $data[2] : null;
       if ($this->module === null) {
-        throw new \PDOException('Escriba una dirección válida');
+        throw new PDOException('Escriba una dirección válida');
       }
       if ($this->action === null) {
-        throw new \PDOException('Escriba una dirección válida');
+        throw new PDOException('Escriba una dirección válida');
       }
     } else {
       $this->module = $this->config->getDefaultModule();
@@ -136,20 +146,22 @@ class fsDispatch {
    * Carga y ejecuta los plugins configurados en el sistema
    * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
    * @version 1.0.0
-   * @throws \PDOException
+   * @throws PDOException
    */
-  private function loadAndExecutePlugins() {
+  protected function loadAndExecutePlugins() {
     if (is_array($this->config->getPlugins()) === true and count($this->config->getPlugins()) > 0) {
-      foreach ($this->config->getPlugins() as $plugin) {
-        $path = $this->config->getPath() . 'libs/plugins/' . $plugin;
+      foreach ($this->config->getPlugins() as $pluginName) {
+        $path = $this->config->getPath() . 'libs/plugins/' . $pluginName;
         if (is_dir($path) === false) {
-          throw new \PDOException('El plugin ' . $plugin . ' no existe');
+          throw new PDOException('El plugin ' . $pluginName . ' no existe');
         }
-        $file = $path . '/plugin.php';
+        $file = $path . '/plugin.class.php';
         if (is_file($file) === false) {
-          throw new \PDOException('El archivo de inicio (plugin.php) no existe');
+          throw new PDOException('El archivo de inicio (plugin.php) no existe');
         }
         require_once $file;
+        $pluginSpace = '\\' . $pluginName . '\\plugin';
+        $plugin = new $pluginSpace($this->config);
       }
     }
   }
@@ -158,9 +170,9 @@ class fsDispatch {
    * Carga el archivo referente al módulo y acción solicitado
    * @author Julian Lasso <ingeniero.julianlasso@gmail.com>
    * @version 1.0.0
-   * @throws \PDOException
+   * @throws PDOException
    */
-  private function loadModuleAndAction() {
+  protected function loadModuleAndAction() {
     $actions = strtr(self::ACTIONS, array(
         '%path%' => $this->config->getPath(),
         '%module%' => $this->module,
@@ -177,14 +189,14 @@ class fsDispatch {
       require_once $actions;
       $this->actionOractions = false;
     } else {
-      throw new \PDOException('El módulo y acción solicitada, no existe');
+      throw new PDOException('El módulo y acción solicitada, no existe');
     }
   }
 
   /**
    * Ejecuta el controlador solicitado
    */
-  private function executeController() {
+  protected function executeController() {
     switch ($this->actionOractions) {
       case true:
         $this->controller = new $this->action($this->config);
@@ -193,7 +205,7 @@ class fsDispatch {
       case false;
         $this->controller = new $this->module($this->config);
         if (method_exists($this->controller, $this->action) === false) {
-          throw new \PDOException('La acción solicitadad no existe');
+          throw new PDOException('La acción solicitadad no existe');
         }
         $this->controller->{$this->action}();
         break;
@@ -203,10 +215,13 @@ class fsDispatch {
   /**
    * Renderiza la vista en el navegador
    */
-  private function renderView() {
-    $view = new fsView($this->config, $this->controller->getViewModule(), $this->controller->getViewName(), $this->controller->getViewFormat());
-    $view->assignVariables((array) $this->controller);
-    $view->renderView();
+  protected function renderView() {
+    $this->view->setConfig($this->config);
+    $this->view->setModule($this->controller->getViewModule());
+    $this->view->setView($this->controller->getViewName());
+    $this->view->setFormat($this->controller->getViewFormat());
+    $this->view->assignVariables((array) $this->controller);
+    $this->view->renderView();
   }
 
 }
