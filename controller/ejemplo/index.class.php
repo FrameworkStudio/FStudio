@@ -19,7 +19,7 @@ class index extends controller implements action {
   public function execute() {
 
     $this->mensaje = 'Hola mundo por variable';
-
+    
     $usuario = new usuarioTable($this->getConfig());
     $this->objUsuario = $usuario->getAll();
 
