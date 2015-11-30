@@ -21,11 +21,11 @@ class recordarMeTable extends recordarMeBaseTable {
     return ($answer->rowCount() > 0) ? $answer->fetchAll(PDO::FETCH_OBJ) : false;
   }
 
-  public function getById($id) {
+  public function getById($id = null) {
     $conn = $this->getConnection($this->config);
     $sql = 'SELECT id, ip_address, hash_cookie, usuario_id, created_at FROM recordar_me AND id = :id';
     $params = array(
-        ':id' => $id
+        ':id' => ($id !== null) ? $id : $this->getId()
     );
     $answer = $conn->prepare($sql);
     $answer->execute($params);
@@ -42,7 +42,9 @@ class recordarMeTable extends recordarMeBaseTable {
     );
     $answer = $conn->prepare($sql);
     $answer->execute($params);
-    return $conn->lastInsertId(self::_SEQUENCE);
+    $this->setId($conn->lastInsertId(self::_SEQUENCE)); // postgresql
+    // $this->setId($conn->lastInsertId()); // mysql
+    return true;
   }
 
   public function update() {

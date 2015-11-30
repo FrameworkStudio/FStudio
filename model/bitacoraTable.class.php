@@ -21,11 +21,11 @@ class bitacoraTable extends bitacoraBaseTable {
     return ($answer->rowCount() > 0) ? $answer->fetchAll(PDO::FETCH_OBJ) : false;
   }
 
-  public function getById($id) {
+  public function getById($id = null) {
     $conn = $this->getConnection($this->config);
     $sql = 'SELECT id, accion, usuario_id, observacion, tabla, registro, created_at FROM bitacora AND id = :id';
     $params = array(
-        ':id' => $id
+        ':id' => ($id !== null) ? $id : $this->getId()
     );
     $answer = $conn->prepare($sql);
     $answer->execute($params);
@@ -44,7 +44,9 @@ class bitacoraTable extends bitacoraBaseTable {
     );
     $answer = $conn->prepare($sql);
     $answer->execute($params);
-    return $conn->lastInsertId(self::_SEQUENCE);
+    $this->setId($conn->lastInsertId(self::_SEQUENCE)); // postgresql
+    // $this->setId($conn->lastInsertId()); // mysql
+    return true;
   }
 
   public function update() {

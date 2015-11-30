@@ -21,11 +21,11 @@ class usuarioCredencialTable extends usuarioCredencialBaseTable {
     return ($answer->rowCount() > 0) ? $answer->fetchAll(PDO::FETCH_OBJ) : false;
   }
 
-  public function getById($id) {
+  public function getById($id = null) {
     $conn = $this->getConnection($this->config);
     $sql = 'SELECT id, usuario_id, credencial_id, created_at FROM usuario_credencial AND id = :id';
     $params = array(
-        ':id' => $id
+        ':id' => ($id !== null) ? $id : $this->getId()
     );
     $answer = $conn->prepare($sql);
     $answer->execute($params);
@@ -41,7 +41,9 @@ class usuarioCredencialTable extends usuarioCredencialBaseTable {
     );
     $answer = $conn->prepare($sql);
     $answer->execute($params);
-    return $conn->lastInsertId(self::_SEQUENCE);
+    $this->setId($conn->lastInsertId(self::_SEQUENCE)); // postgresql
+    // $this->setId($conn->lastInsertId()); // mysql
+    return true;
   }
 
   public function update() {

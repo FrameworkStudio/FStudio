@@ -21,11 +21,11 @@ class usuarioTable extends usuarioBaseTable {
     return ($answer->rowCount() > 0) ? $answer->fetchAll(PDO::FETCH_OBJ) : false;
   }
 
-  public function getById($id) {
+  public function getById($id = null) {
     $conn = $this->getConnection($this->config);
     $sql = 'SELECT id, user_name, password, actived, last_login_at, created_at, updated_at, deleted_at FROM usuario WHERE deleted_at IS NULL AND id = :id';
     $params = array(
-        ':id' => $id
+        ':id' => ($id !== null) ? $id : $this->getId()
     );
     $answer = $conn->prepare($sql);
     $answer->execute($params);
@@ -43,7 +43,9 @@ class usuarioTable extends usuarioBaseTable {
     );
     $answer = $conn->prepare($sql);
     $answer->execute($params);
-    return $conn->lastInsertId(self::_SEQUENCE);
+    $this->setId($conn->lastInsertId(self::_SEQUENCE)); // postgresql
+    // $this->setId($conn->lastInsertId()); // mysql
+    return true;
   }
 
   public function update() {
