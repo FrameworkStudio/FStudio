@@ -35,6 +35,12 @@ Para la puesta en marcha de **FStudio** hay que seguir los siguientes pasos:
 
 ## Historial de cambios - Changelog
 
+#### 1.0.1
+Llegan las tareas a nivel de consola.
+
+  - Tarea para generar una acción en un módulo específico.
+  - Tarea para generar un archivo de acciones en un módulo específico.
+
 #### 1.0.0
   - Estructura inicial de carpetas.
   - Implementación del núcleo (MVC).
