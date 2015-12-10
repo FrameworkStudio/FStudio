@@ -9,7 +9,7 @@ Cuando se decidió crear FStudio, pensamos en:
   - Acceso a datos mediante la [librería PDO] e implementando un componente similar a [DAO].
   - Flexibilidad del framework por medio de [plug-ins].
 
-> *Los **plug-ins** son una herramienta sumamente poderosa, la cual le permitirá a los aprendices e instructores implementar comportamientos no concebidos inicialmente en FStudio como por ejemplo implementar el componente DAO para el manejo del acceso a los datos o extender la funcionalidad de FStudio.*
+> *Los plug-ins son una herramienta sumamente poderosa, la cual le permitirá a los aprendices e instructores implementar comportamientos no concebidos inicialmente en FStudio como por ejemplo implementar el componente DAO para el manejo del acceso a los datos o extender la funcionalidad de FStudio.*
 
 ## Requerimientos
   - [Apache 2].
