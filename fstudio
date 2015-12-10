@@ -1,0 +1,70 @@
+#!/usr/bin/env php
+<?php
+
+/* 
+ * Copyright 2015 Julian Lasso <ingeniero.julianlasso@gmail.com>.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+require_once 'libs/vendor/FStudio/fsPlugin.class.php';
+require_once 'libs/vendor/FStudio/fsConfig.class.php';
+require_once 'config/myConfig.class.php';
+require_once 'config/config.php';
+
+try {
+  $GLOBALS['task'] = true;
+  $GLOBALS['argv'] = $argv;
+  if (is_array($config->getPlugins()) === true and count($config->getPlugins()) > 0) {
+    foreach ($config->getPlugins() as $pluginName) {
+      $path = $config->getPath() . 'libs/plugins/' . $pluginName;
+      if (is_dir($path) === false) {
+        throw new Exception("El plugin $pluginName no existe\n");
+      }
+      $file = $path . '/plugin.class.php';
+      if (is_file($file) === false) {
+        throw new Exception("El archivo de inicio (plugin.php) no existe\n");
+      }
+      require_once $file;
+      $pluginSpace = '\\' . $pluginName . '\\plugin';
+      $plugin = new $pluginSpace($config);
+    }
+  }
+
+  if (isset($argv[1]) === false) {
+    throw new Exception(
+    "\n+--------------------------------------------------------+\n"
+    . "| ERROR!!!                                               |\n"
+    . "+--------------------------------------------------------+\n"
+    . "| Debes de pasar una tarea a ejecutar [directriz:accion] |\n"
+    . "| Ejemplo: modelo:generar                                |\n"
+    . "+--------------------------------------------------------+\n"
+    . "\n\n"
+    );
+  }
+  $data = explode(':', $argv[1]);
+  $task = 'libs/tasks/' . $data[0] . '/' . $data[1] . 'Task.php';
+  if (is_file($task) === false) {
+    throw new Exception(
+    "\n+--------------------------------------------------------+\n"
+    . "| ADVERTENCIA!!!                                         |\n"
+    . "+--------------------------------------------------------+\n"
+    . "| La tarea a ejecutar no existe                          |\n"
+    . "+--------------------------------------------------------+\n"
+    . "\n\n"
+    );
+  }
+  require_once $task;
+} catch (Exception $exc) {
+  echo $exc->getTraceAsString() . "\n";
+}

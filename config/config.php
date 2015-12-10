@@ -3,8 +3,8 @@
 use FStudio\myConfig as config;
 
 $config = new config();
-$config->setPath($_SERVER['DOCUMENT_ROOT'].'/fstudio/');
-$config->setUrl('http://localhost/fstudio/web/');
+$config->setPath('/Applications/MAMP/htdocs/FStudio/');
+$config->setUrl('http://localhost/FStudio/web/');
 
 $config->setDriver('mysql'); // mysql, pgsql
 $config->setHost('localhost');

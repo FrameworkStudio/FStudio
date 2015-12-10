@@ -7,7 +7,7 @@ use PDOException;
 /**
  * Versión actual de la línea base (Framework Studio)
  */
-define('FS_VERSION', '1.0.0');
+define('FS_VERSION', '1.0.1');
 
 /**
  * Clase para manejar el controlador frontal
