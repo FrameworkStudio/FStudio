@@ -1,4 +1,4 @@
-# Framework Studio 1.0.0
+# Framework Studio 1.0.1
 **Framework Studio (FStudio)** es la línea base que se propone para trabajar los proyectos formativos desarrollados en PHP en el SENA (CDTI - Valle) en sus programas ADSI, TADSI y TPS.
 
 ## Características
