@@ -66,5 +66,7 @@ try {
   }
   require_once $task;
 } catch (Exception $exc) {
+  echo $exc->getMessage();
+  echo "\n";
   echo $exc->getTraceAsString() . "\n";
 }

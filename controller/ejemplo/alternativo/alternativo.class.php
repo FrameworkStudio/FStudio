@@ -10,7 +10,7 @@ use FStudio\fsController as controller;
  * @subpackage exception
  * @version 1.0.0
  */
-class FStudio extends controller {
+class alternativo extends controller {
 
   /**
    * Método principal para la ejecución visual de la excepción
@@ -29,7 +29,7 @@ class FStudio extends controller {
    * @version 1.0.0
    */
   public function wellcome() {
-    $this->mensaje = "Wellcome to FrameWork Studio";
+    $this->mensaje = "Wellcome to FrameWork Studio Controller 9";
     $this->defineView('FStudio', 'wellcome', 'html');
   }
 

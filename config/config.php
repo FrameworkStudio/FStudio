@@ -8,7 +8,7 @@ $config->setUrl('http://localhost/FStudio/web/');
 
 $config->setDriver('mysql'); // mysql, pgsql
 $config->setHost('localhost');
-$config->setPort(false); // 3306, 5432
+$config->setPort(3306); // 3306, 5432
 $config->setDbName('fstudio');
 $config->setUser('root');
 $config->setPassword('root');
@@ -25,5 +25,6 @@ $config->setDefaultModule('FStudio');
 $config->setDefaultAction('wellcome');
 
 $config->setPlugins(array(
-    'fsEjemplo1Plugin'
+    'fsCamelCasePlugin',
+    'fsYamlPlugin'
 ));

@@ -26,7 +26,7 @@ if (is_file('config/model.yml') === false) {
 }
 
 $yaml = new Parser();
-$cc = new camcelCase();
+$cc = new camelCase();
 $model = $yaml->parse(file_get_contents('config/model.yml'));
 
 if (is_dir('model') === false) {

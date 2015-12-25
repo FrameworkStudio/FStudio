@@ -1,4 +1,4 @@
-# Framework Studio 1.0.1
+# Framework Studio 1.0.2
 **Framework Studio (FStudio)** es la línea base que se propone para trabajar los proyectos formativos desarrollados en PHP en el SENA (CDTI - Valle) en sus programas ADSI, TADSI y TPS.
 
 ## Características
@@ -34,6 +34,13 @@ Para la puesta en marcha de **FStudio** hay que seguir los siguientes pasos:
 **FStudio** está documentado en todos sus aspecto y día a día se irá construyendo más documentación al respecto el cual puedes [ver aquí].
 
 ## Historial de cambios - Changelog
+
+#### 1.0.2
+Soporte a múltiples controladores en un módulo y X cantidad de subcarpetas en un módulo.
+
+  - Se agrega el soporte a múltiples controladores en un módulo.
+  - Se agrega el soporte a múltiples subcarpetas en la carpeta de un módulo.
+  - Para más información consultar la wiki de FStudio.
 
 #### 1.0.1
 Llegan las tareas a nivel de consola.

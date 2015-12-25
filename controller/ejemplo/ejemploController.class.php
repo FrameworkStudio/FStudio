@@ -11,7 +11,7 @@ use FStudio\fsController as controller;
  * @subpackage ejemplo
  * @version 1.0.0
  */
-class ejemplo extends controller {
+class ejemploController extends controller {
 
   /**
    * Acción saludar. Esta acción es un ejemplo de como pasar una variable

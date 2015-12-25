@@ -7,19 +7,19 @@ use FStudio\fsController as controller;
 use FStudio\interfaces\fsAction as action;
 
 /**
- * Clase de la acción index del módulo ejemplo
+ * Clase de la acción indexAction del módulo ejemplo
  *
  * @package FStudio
  * @subpackage controller
  * @subpackage ejemplo
  * @version 1.0.0
  */
-class index extends controller implements action {
+class indexAction extends controller implements action {
 
   public function execute() {
 
     $this->mensaje = 'Hola mundo por variable';
-    
+
     $usuario = new usuarioTable($this->getConfig());
     $this->objUsuario = $usuario->getAll();
 
