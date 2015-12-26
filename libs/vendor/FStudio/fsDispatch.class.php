@@ -130,8 +130,8 @@ class fsDispatch {
       $this->executeController();
       $this->renderView();
     } catch (PDOException $exc) {
-      require_once $this->config->getPath() . 'controller/FStudio/FStudio.class.php';
-      $this->controller = new \FStudio($this->config);
+      require_once $this->config->getPath() . 'controller/FStudio/FStudioController.class.php';
+      $this->controller = new \FStudioController($this->config);
       $this->controller->exception($exc);
       $this->renderView();
     }
@@ -158,10 +158,10 @@ class fsDispatch {
    * @version 1.0.0
    */
   protected function setRouting() {
+    $this->path = $this->config->getPath() . 'controller/';
     if (isset($_SERVER['PATH_INFO']) === true) {
       $data = explode('/', $_SERVER['PATH_INFO']);
       $cnt = count($data);
-      $this->path = $this->config->getPath() . 'controller/';
       switch ($cnt) {
         case 3:
           $this->module = $data[1];

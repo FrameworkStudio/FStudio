@@ -25,7 +25,7 @@ try {
   $autor = $argv[2];
   $email = $argv[3];
   $module = $cc->camelCase(explode(':', $argv[4])[1]);
-  $action = $cc->camelCase(explode(':', $argv[5])[1]);
+  $action = $cc->camelCase(explode(':', $argv[5])[1]) . 'Action';
   $year = date("Y");
 
   $dir = $config->getPath() . 'controller/' . $module;

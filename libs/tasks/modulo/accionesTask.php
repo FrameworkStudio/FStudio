@@ -25,10 +25,11 @@ try {
   $autor = $argv[2];
   $email = $argv[3];
   $module = $cc->camelCase(explode(':', $argv[4])[1]);
+  $moduleName = $cc->camelCase(explode(':', $argv[4])[1]) . 'Controller';
   $year = date("Y");
 
   $dir = $config->getPath() . 'controller/' . $module;
-  $file = $dir . '/' . $module . '.class.php';
+  $file = $dir . '/' . $moduleName . '.class.php';
 
   if (is_file($file) === true) {
     throw new Exception(
@@ -64,7 +65,7 @@ try {
 use FStudio\\fsController as controller;
 
 /**
- * Description of $module
+ * Description of $moduleName
  * 
  * @author $year $autor <$email>
  * @package FStudio
@@ -72,7 +73,7 @@ use FStudio\\fsController as controller;
  * @subpackage $module
  * @version 1.0.0
  */
-class $module extends controller {
+class $moduleName extends controller {
 
   public function index() {
     //put your code here
