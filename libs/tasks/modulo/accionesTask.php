@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-// php fstudio modulo:acciones "Julian Lasso" ingeniero.julianlasso@gmail.com modulo:prueba
+// php fstudio modulo:acciones "Julian Lasso" ingeniero.julianlasso@gmail.com module:prueba controller:prueba
 
 use fsCamelCasePlugin\fsCamelCase as camcelCase;
 
@@ -25,7 +25,7 @@ try {
   $autor = $argv[2];
   $email = $argv[3];
   $module = $cc->camelCase(explode(':', $argv[4])[1]);
-  $moduleName = $cc->camelCase(explode(':', $argv[4])[1]) . 'Controller';
+  $moduleName = $cc->camelCase(explode(':', $argv[((isset($argv[5]) === true) ? 5 : 4)])[1]) . 'Controller';
   $year = date("Y");
 
   $dir = $config->getPath() . 'controller/' . $module;
@@ -46,6 +46,7 @@ try {
 
   $template = <<<TEMPLATE
 <?php
+
 /* 
  * Copyright $year $autor <$email>.
  * 

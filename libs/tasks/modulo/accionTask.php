@@ -46,6 +46,7 @@ try {
 
   $template = <<<TEMPLATE
 <?php
+
 /* 
  * Copyright $year $autor <$email>.
  * 
@@ -76,10 +77,11 @@ use FStudio\\interfaces\\fsAction as action;
  */
 class $action extends controller implements action {
 
-    public function execute() {
-      //put your code here
-      \$this->defineView(\$modulo, \$vista, 'html');
-    }
+  public function execute() {
+    //put your code here
+    \$this->defineView(\$modulo, \$vista, 'html');
+  }
+
 }
 
 TEMPLATE;
